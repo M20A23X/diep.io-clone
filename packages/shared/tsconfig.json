@@ -1,0 +1,33 @@
+{
+  "exclude": [
+    "dist/"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "target": "es2017",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "NodeNext",
+    "outDir": "dist/",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "#/*": [
+        "./*"
+      ]
+    },
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "noFallthroughCasesInSwitch": false,
+    "skipLibCheck": true
+  }
+}
