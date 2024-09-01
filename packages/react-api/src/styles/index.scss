@@ -1,0 +1,22 @@
+@forward "./null";
+@forward "./colors";
+@forward "./constants";
+//@forward "./placeholders";
+@use "./colors" as cl;
+@use "./constants" as c;
+
+* {
+  font-family: c.$font-family-default;
+  font-weight: 900;
+  font-size: 22px;
+
+  color: c.$col-default;
+  text-shadow: c.$text-shadow-default;
+  white-space: nowrap;
+  user-select: none;
+}
+
+
+:global(.active) {
+  @extend %active;
+}
