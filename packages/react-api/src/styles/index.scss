@@ -1,18 +1,17 @@
 @forward "./null";
 @forward "./colors";
 @forward "./constants";
-//@forward "./placeholders";
+@forward "./placeholders";
 @use "./colors" as cl;
 @use "./constants" as c;
 
 * {
-  font-family: c.$font-family-default;
-  font-weight: 900;
-  font-size: 22px;
-
   color: c.$col-default;
-  text-shadow: c.$text-shadow-default;
+  font-weight: c.$fw-default;
+  font-size: c.$fz-default;
+  font-family: c.$font-family-default;
   white-space: nowrap;
+  text-shadow: c.$text-shadow-default;
   user-select: none;
 }
 

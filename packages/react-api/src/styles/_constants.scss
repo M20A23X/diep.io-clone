@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap';
 
-$max-screen-w: 1920px;
 $font-family-default: "Ubuntu", sans-serif;
+$fw-default: 900;
+$fz-default: 22px;
 $text-shadow-default: 1 * 0.4px 1 * 0.4px 0 #000, -1 * 0.4px 1 * 0.4px 0 #000, 1 * 0.4px -1 * 0.4px 0 #000, -1 * 0.4px -1 * 0.4px 0 #000, 0 * 0.4px 1 * 0.4px 0 #000, 0 * 0.4px -1 * 0.4px 0 #000, -1 * 0.4px 0 * 0.4px 0 #000, 1 * 0.4px 0 * 0.4px 0 #000, 2 * 0.4px 2 * 0.4px 0 #000, -2 * 0.4px 2 * 0.4px 0 #000, 2 * 0.4px -2 * 0.4px 0 #000, -2 * 0.4px -2 * 0.4px 0 #000, 0 * 0.4px 2 * 0.4px 0 #000, 0 * 0.4px -2 * 0.4px 0 #000, -2 * 0.4px 0 * 0.4px 0 #000, 2 * 0.4px 0 * 0.4px 0 #000, 1 * 0.4px 2 * 0.4px 0 #000, -1 * 0.4px 2 * 0.4px 0 #000, 1 * 0.4px -2 * 0.4px 0 #000, -1 * 0.4px -2 * 0.4px 0 #000, 2 * 0.4px 1 * 0.4px 0 #000, -2 * 0.4px 1 * 0.4px 0 #000, 2 * 0.4px -1 * 0.4px 0 #000, -2 * 0.4px -1 * 0.4px 0 #000;
 $text-shadow-thick: 1 * 1px 1 * 1px 0 #000, -1 * 1px 1 * 1px 0 #000, 1 * 1px -1 * 1px 0 #000, -1 * 1px -1 * 1px 0 #000, 0 * 1px 1 * 1px 0 #000, 0 * 1px -1 * 1px 0 #000, -1 * 1px 0 * 1px 0 #000, 1 * 1px 0 * 1px 0 #000, 2 * 1px 2 * 1px 0 #000, -2 * 1px 2 * 1px 0 #000, 2 * 1px -2 * 1px 0 #000, -2 * 1px -2 * 1px 0 #000, 0 * 1px 2 * 1px 0 #000, 0 * 1px -2 * 1px 0 #000, -2 * 1px 0 * 1px 0 #000, 2 * 1px 0 * 1px 0 #000, 1 * 1px 2 * 1px 0 #000, -1 * 1px 2 * 1px 0 #000, 1 * 1px -2 * 1px 0 #000, -1 * 1px -2 * 1px 0 #000, 2 * 1px 1 * 1px 0 #000, -2 * 1px 1 * 1px 0 #000, 2 * 1px -1 * 1px 0 #000, -2 * 1px -1 * 1px 0 #000;
 $col-default: #fff;
-$border-default: 2.25px solid rgba(0, 0, 0, 0.375);
+$border-default: 2.25px solid rgb(0 0 0 / 37.5%);
 $br-default: 0.25rem;
-
-
 $clickable-after-h: 30%;
-$clickable-after-bg-col: rgba(0, 0, 0, 0.1);
+$clickable-after-bg-col: rgb(0 0 0 / 10%);
 $clickable-p: 0.625em;
 $clickable-hover: brightness(105%) contrast(90%);
 

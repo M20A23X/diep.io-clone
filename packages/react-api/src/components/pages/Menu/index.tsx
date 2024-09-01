@@ -1,0 +1,120 @@
+import React, { FC, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import cn from 'classnames';
+
+import s from './Menu.module.scss';
+import { Select } from '#/components/molecules';
+
+import variables from '#/styles/export.module.scss';
+
+import Logo from '#/assets/images/logo.png';
+import USA from '#/assets/images/flag-usa.svg';
+import GE from '#/assets/images/flag-ge.svg';
+
+type Region = { flag: string; name: string; players: number };
+type GameMode = 'Maze' | '4 Teams';
+type Team = 'Blue' | 'Red';
+
+const GameModeColorDict: Record<GameMode, string> = {
+    Maze: variables.mazeBgCol,
+    '4 Teams': variables.teams4BgCol
+};
+const TeamColorDict: Record<Team, string> = {
+    Red: variables.teamRedBgCol,
+    Blue: variables.teamBlueBgCol
+};
+
+const TEAM: Team = 'Blue';
+const GAME_MODES: GameMode[] = ['Maze', '4 Teams'];
+const REGIONS: Region[] = [
+    { flag: USA, name: 'Los Angeles', players: 236 },
+    { flag: GE, name: 'Frankfurt', players: 23 }
+];
+const Menu: FC = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    return (
+        <>
+            <img
+                src={Logo}
+                alt='logo'
+                className={s.logo}
+            />
+            <div className={cn(s.menu, { [s.menu__loading]: isLoading })}>
+                <div className={s.serverSelector}>
+                    <Select
+                        tabIndex={0}
+                        name={'Game Mode'}
+                        options={GAME_MODES}
+                        className={s.serverSelector_gameMode}
+                        getOptionHtml={(entry: GameMode) => <>{entry}</>}
+                        getOptionStyle={(entry: GameMode) => ({
+                            backgroundColor: GameModeColorDict[entry]
+                        })}
+                    />
+                    <Select
+                        tabIndex={1}
+                        name={'Region'}
+                        options={REGIONS}
+                        className={s.serverSelector_region}
+                        getOptionHtml={(entry: Region) => (
+                            <>
+                                <img
+                                    src={entry.flag}
+                                    alt={entry.name}
+                                    className={s.serverSelector_region_flag}
+                                />
+                                &nbsp;
+                                {entry.name}&nbsp;
+                                <span className={s.serverSelector_region_players}>({entry.players})</span>
+                            </>
+                        )}
+                    />
+                </div>
+                <div className={s.inputGroup}>
+                    {isLoading ? (
+                        <span className={s.inputGroup_loader}>Connecting...</span>
+                    ) : (
+                        <>
+                            <input
+                                type='text'
+                                className={s.inputGroup_username}
+                            />
+                            <button
+                                type={'submit'}
+                                className={s.inputGroup_button}
+                            >
+                                Play!
+                            </button>
+                        </>
+                    )}
+                </div>
+                <button
+                    className={s.copyLink}
+                    style={{ backgroundColor: TeamColorDict[TEAM] }}
+                >
+                    <FontAwesomeIcon icon={faLink} />
+                    <span>Copy Party Link</span>
+                </button>
+                <div className={s.sessionBtns}>
+                    <button
+                        className={s.sessionBtns_button}
+                        disabled
+                    >
+                        Login
+                    </button>
+                    <button
+                        className={s.sessionBtns_button}
+                        disabled
+                    >
+                        Friends
+                    </button>
+                    <button className={s.sessionBtns_button}>Achievements</button>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export { Menu };

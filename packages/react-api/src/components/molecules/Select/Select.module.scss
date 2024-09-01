@@ -1,0 +1,48 @@
+@use "#/styles" as s;
+
+$select-gap: 5px;
+$select-fz: 0.8rem;
+$select-p: 0.625em;
+$chevron-r: 16px;
+$chevron-fz: 0.8rem;
+$chevron-shadow-s: 1px;
+$chevron-shadow-blur: 0.5px;
+$chevron-shadow: drop-shadow(0 -1 * $chevron-shadow-s $chevron-shadow-blur #000) drop-shadow(0 $chevron-shadow-s $chevron-shadow-blur #000) drop-shadow($chevron-shadow-s 0 $chevron-shadow-blur #000) drop-shadow(-1 * $chevron-shadow-s 0 $chevron-shadow-blur #000);
+
+.select {
+  &Wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: $select-gap;
+    font-size: $select-fz;
+  }
+
+  &Control {
+    display: flex;
+    flex-grow: 1;
+    border-radius: s.$br-default;
+
+    &Wrapper {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+    }
+  }
+}
+
+.chevron {
+  position: absolute;
+  right: $chevron-r;
+  font-size: $chevron-fz;
+  filter: $chevron-shadow;
+  pointer-events: none;
+}
+
+.optionsList {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}

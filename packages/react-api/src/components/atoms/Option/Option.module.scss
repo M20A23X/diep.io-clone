@@ -1,0 +1,21 @@
+@use "#/styles" as s;
+
+$option-filter: brightness(100%) contrast(90%) saturate(70%);
+$option-h: 3rem;
+$option-bg-col: s.$uicolor-15;
+$option-hover-transition: filter 0.2s ease-in-out;
+
+.optionWrapper {
+  @extend %clickable;
+
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  height: $option-h;
+  background-color: $option-bg-col;
+  filter: $option-filter;
+
+  &:hover {
+    transition: $option-hover-transition;
+  }
+}

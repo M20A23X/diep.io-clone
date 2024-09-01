@@ -1,0 +1,47 @@
+@use "./constants" as c;
+
+%active {
+  transform: translateY(1px);
+}
+
+%controls {
+  padding: c.$clickable-p;
+  border: c.$border-default;
+  border-radius: c.$br-default;
+}
+
+%inputs {
+  @extend %controls;
+
+  color: black;
+  text-shadow: none;
+}
+
+%clickable {
+  @extend %controls;
+
+  position: relative;
+  align-items: inherit;
+  cursor: default;
+
+  &:not([disabled]) {
+    &:hover {
+      filter: c.$clickable-hover;
+    }
+
+    &:active {
+      @extend %active;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: c.$clickable-after-h;
+    background-color: c.$clickable-after-bg-col;
+    content: '';
+    pointer-events: none;
+  }
+}
