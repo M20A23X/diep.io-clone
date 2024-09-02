@@ -28,7 +28,10 @@ const Menu: FC = () => {
     const EntriesJSX = MenuEntries.map((entry) => (
         <>
             <hr />
-            <h2 className={s.sidebar_entry}>
+            <h2
+                key={entry.text}
+                className={s.sidebar_entry}
+            >
                 <FontAwesomeIcon
                     icon={entry.icon}
                     className={s.sidebar_entry_icon}
@@ -62,7 +65,12 @@ const Menu: FC = () => {
                         </h1>
                         {EntriesJSX}
                         <hr />
-                        <h2 className={cn(s.sidebar_entry, s.sidebar_entry_special)}>
+                        <h2
+                            className={cn(s.sidebar_entry, s.sidebar_entry_special)}
+                            onClick={() => {
+                                window.open('https://iogames.space/', '_blank', 'noopener noreferrer');
+                            }}
+                        >
                             <span>
                                 <FontAwesomeIcon
                                     icon={faChessBoard}

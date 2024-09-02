@@ -24,25 +24,24 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
     const toggleActive = () => setActive((prevState) => !prevState);
     const handleOptionClick = (index: number) => {
         setSelectedOptionIdx(index);
-        setActive(false);
     };
 
-    const OptionsJSX: ReactElement[] = options.map((entry: T, index) => (
+    const OptionsAllJSX: ReactElement[] = options.map((entry: T, index) => (
         <Option
             key={entry.toString() + index}
             itemId={index}
-            handleClick={() => handleOptionClick(index)}
+            handleClick={() => {
+                if (index !== selectedOptionIdx) handleOptionClick(index);
+            }}
             style={getOptionStyle?.(entry) ?? {}}
-            onBlur={() => setActive(false)}
-            onBlurCapture={() => setActive(false)}
         >
             {getOptionHtml(entry)}
         </Option>
     ));
 
-    const Options = isActive
-        ? [...OptionsJSX.slice(0, selectedOptionIdx), ...OptionsJSX.slice(selectedOptionIdx + 1)]
-        : OptionsJSX[selectedOptionIdx];
+    const OptionsJSX = isActive
+        ? [...OptionsAllJSX.slice(0, selectedOptionIdx), ...OptionsAllJSX.slice(selectedOptionIdx + 1)]
+        : OptionsAllJSX[selectedOptionIdx];
 
     return (
         <div
@@ -57,14 +56,14 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
                     id={name}
                     className={s.selectControl}
                 >
-                    {OptionsJSX[selectedOptionIdx]}
+                    {OptionsAllJSX[selectedOptionIdx]}
                 </div>
                 <FontAwesomeIcon
                     icon={isActive ? faChevronUp : faChevronDown}
                     className={s.chevron}
                 />
             </div>
-            {isActive ? <ul className={s.optionsList}>{Options}</ul> : null}
+            {isActive ? <ul className={s.optionsList}>{OptionsJSX}</ul> : null}
         </div>
     );
 }
