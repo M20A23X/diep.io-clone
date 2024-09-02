@@ -18,13 +18,13 @@ interface ISelectProps<T extends object | string> {
 
 function Select<T extends object | string>(props: ISelectProps<T>) {
     const { name, options, getOptionStyle, getOptionHtml, className, tabIndex } = props;
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setActive] = useState(false);
     const [selectedOptionIdx, setSelectedOptionIdx] = useState(0);
 
-    const toggleActive = (state: boolean) => setIsActive(!state);
+    const toggleActive = () => setActive((prevState) => !prevState);
     const handleOptionClick = (index: number) => {
         setSelectedOptionIdx(index);
-        setIsActive(false);
+        setActive(false);
     };
 
     const OptionsJSX: ReactElement[] = options.map((entry: T, index) => (
@@ -33,8 +33,8 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
             itemId={index}
             handleClick={() => handleOptionClick(index)}
             style={getOptionStyle?.(entry) ?? {}}
-            onBlur={() => setIsActive(false)}
-            onBlurCapture={() => setIsActive(false)}
+            onBlur={() => setActive(false)}
+            onBlurCapture={() => setActive(false)}
         >
             {getOptionHtml(entry)}
         </Option>
@@ -47,9 +47,9 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
     return (
         <div
             className={cn(s.selectWrapper, className, { active: isActive })}
-            onClick={() => toggleActive(isActive)}
+            onClick={() => toggleActive()}
             tabIndex={tabIndex}
-            onBlur={() => setIsActive(false)}
+            onBlur={() => setActive(false)}
         >
             <label htmlFor={name}>{name}</label>
             <div className={s.selectControlWrapper}>

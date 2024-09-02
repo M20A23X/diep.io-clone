@@ -14,23 +14,6 @@ $backdrop-brightness: 50%;
   }
 }
 
-@keyframes pulser {
-  0% {
-    transform: none;
-  }
-
-  33% {
-    transform: none;
-  }
-
-  66% {
-    transform: none;
-  }
-
-  100% {
-    transform: scale(1.04);
-  }
-}
 
 .wrapper {
   display: flex;

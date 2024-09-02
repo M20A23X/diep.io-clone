@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
 
+import { Menu } from './Menu';
 import s from './Menu.module.scss';
+
 import { Select } from '#/components/molecules';
 
 import variables from '#/styles/export.module.scss';
@@ -31,17 +33,18 @@ const REGIONS: Region[] = [
     { flag: USA, name: 'Los Angeles', players: 236 },
     { flag: GE, name: 'Frankfurt', players: 23 }
 ];
-const Menu: FC = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+const MainScreen: FC = () => {
+    const [isLoading, setLoading] = useState<boolean>(false);
 
     return (
         <>
-            <img
-                src={Logo}
-                alt='logo'
-                className={s.logo}
-            />
-            <div className={cn(s.menu, { [s.menu__loading]: isLoading })}>
+            <Menu />
+            <div className={cn(s.enterForm, { [s.menu__loading]: isLoading })}>
+                <img
+                    src={Logo}
+                    alt='logo'
+                    className={s.logo}
+                />
                 <div className={s.serverSelector}>
                     <Select
                         tabIndex={0}
@@ -117,4 +120,4 @@ const Menu: FC = () => {
     );
 };
 
-export { Menu };
+export { MainScreen };

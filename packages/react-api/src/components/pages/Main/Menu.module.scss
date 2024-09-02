@@ -19,13 +19,33 @@ $input-button-fz: 1.25em;
 $session-gap: 0 16px;
 $copylink-fz: 0.8em;
 
+
+@keyframes pulser {
+  0% {
+    transform: none;
+  }
+
+  33% {
+    transform: none;
+  }
+
+  66% {
+    transform: none;
+  }
+
+  100% {
+    transform: scale(1.04);
+  }
+}
+
 .logo {
+  align-self: center;
   width: $logo-w;
   margin-bottom: $logo-m-b;
   padding-bottom: $logo-p-b;
 }
 
-.menu {
+.enterForm {
   display: flex;
   flex-direction: column;
   width: $selector-w;
