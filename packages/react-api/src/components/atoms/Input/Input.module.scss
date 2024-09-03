@@ -1,0 +1,66 @@
+@use "#/styles" as s;
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  margin-right: 13px;
+}
+
+.input {
+  &CheckBox {
+    font-size: 1.5em;
+
+    path {
+      color: s.$netcolor1;
+    }
+
+    &.checked path {
+      color: s.$netcolor7;
+    }
+
+    &_native {
+      display: none;
+    }
+  }
+
+  &Range {
+    position: relative;
+    min-width: 200px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: inherit;
+      height: 18px;
+      background-color: #00b2e1;
+      border-radius: 9px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      content: '';
+    }
+
+    &::-webkit-slider-runnable-track {
+      background-color: s.$netcolor1;
+      border-radius: 9px;
+      appearance: none;
+    }
+
+    &::-webkit-slider-thumb {
+      position: relative;
+      top: 1px;
+      z-index: 1;
+      width: 18px;
+      height: 18px;
+      margin-top: -2px;
+      background-color: #fff;
+      border-radius: 50%;
+      appearance: none;
+    }
+  }
+}
+
