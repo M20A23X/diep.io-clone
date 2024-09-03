@@ -23,7 +23,6 @@ $chevron-shadow: drop-shadow(0 -1 * $chevron-shadow-s $chevron-shadow-blur #000)
   &Control {
     display: flex;
     flex-grow: 1;
-    border-radius: s.$br-default;
 
     &Wrapper {
       display: flex;

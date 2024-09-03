@@ -7,7 +7,6 @@
 %controls {
   padding: c.$clickable-p;
   border: c.$border-default;
-  border-radius: c.$br-default;
 }
 
 %inputs {
@@ -22,6 +21,7 @@
 
   position: relative;
   align-items: inherit;
+  overflow: hidden;
   cursor: default;
 
   &:not([disabled]) {

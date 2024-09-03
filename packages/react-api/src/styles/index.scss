@@ -1,9 +1,10 @@
 @forward "./null";
 @forward "./colors";
 @forward "./constants";
+@forward "./global";
 @forward "./placeholders";
-@use "./colors" as cl;
 @use "./constants" as c;
+
 
 * {
   color: c.$col-default;
@@ -15,7 +16,3 @@
   user-select: none;
 }
 
-
-:global(.active) {
-  @extend %active;
-}

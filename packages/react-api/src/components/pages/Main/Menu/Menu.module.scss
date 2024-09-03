@@ -3,23 +3,13 @@
 $btn-b-bl-r: 0.325em;
 $btn-backdrop-filter: blur(2px);
 $btn-bg-c: rgb(0 0 0 / 75%);
-$btn-cross-shadow-blur: 1px;
-$btn-cross-shadow: drop-shadow(0 0 $btn-cross-shadow-blur #fff) drop-shadow(0 0 $btn-cross-shadow-blur #fff);
 $btn-fz: 0.875rem;
 $btn-p: 1.3rem;
 $btn-gap: 0.2rem;
 $sidebar-bg-c: rgb(0 0 0 / 75%);
 $sidebar-h: 100vh;
-$sidebar-hr-b: 1px solid rgb(255 255 255 / 10%);
-$sidebar-hr-br: 1px;
 $sidebar-p: 17px 55px 90px;
 $sidebar-w: 350px;
-$sidebar-entry-mt: 0.83em;
-$sidebar-entry-fz: min(3vh, 1em);
-$sidebar-entry-fw: 700;
-$sidebar-entry-icon-mr: 0.5em;
-$sidebar-entry-special-fz: 1.1em;
-$sidebar-entry-special-icon-fz: 1.2em;
 
 @keyframes fade-in {
   0% {
@@ -59,27 +49,39 @@ $btn-animation: fade-in 0.2s ease-in-out;
 $sidebar-open-animation: slide-in 0.25s ease-in-out;
 $sidebar-close-animation: slide-out 0.1s ease-in-out;
 
-.menu_btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  gap: $btn-gap;
-  align-items: center;
-  padding: $btn-p;
-  color: white;
-  font-size: $btn-fz;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: $btn-bg-c;
-  border-bottom-left-radius: $btn-b-bl-r;
-  backdrop-filter: $btn-backdrop-filter;
-  animation: $btn-animation;
+.menu {
+  &_wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    overflow: hidden;
+  }
 
-  &__pressed {
-    display: none;
+  &_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: $btn-gap;
+    align-items: center;
+    padding: $btn-p;
+    color: white;
+    font-size: $btn-fz;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: $btn-bg-c;
+    border-radius: 0 !important;
+    border-bottom-left-radius: s.$br-default !important;
+    backdrop-filter: $btn-backdrop-filter;
+    animation: $btn-animation;
+
+    &__pressed {
+      display: none;
+    }
   }
 }
+
 
 .sidebar {
   display: flex;
@@ -98,47 +100,6 @@ $sidebar-close-animation: slide-out 0.1s ease-in-out;
     &__closed {
       display: none;
       animation: $sidebar-close-animation;
-    }
-  }
-
-  &_wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 3;
-    overflow: hidden;
-  }
-
-  hr {
-    width: 100%;
-    margin: 0;
-    border: $sidebar-hr-b;
-    border-radius: $sidebar-hr-br;
-  }
-
-  &_entry {
-    display: flex;
-    font-weight: $sidebar-entry-fw;
-    font-size: $sidebar-entry-fz;
-    text-align: left;
-    margin-block: $sidebar-entry-mt $sidebar-entry-mt;
-
-    &_icon {
-      margin-right: $sidebar-entry-icon-mr;
-    }
-
-    &_special {
-      justify-content: space-between;
-      font-size: $sidebar-entry-special-fz;
-
-      &_icon {
-        font-size: $sidebar-entry-special-icon-fz;
-        filter: $btn-cross-shadow;
-
-        &__blue path {
-          color: s.$netcolor2;
-        }
-      }
     }
   }
 }
