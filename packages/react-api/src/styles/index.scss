@@ -5,6 +5,9 @@
 @forward "./placeholders";
 @use "./constants" as c;
 
+body {
+  background-color: #000;
+}
 
 * {
   color: c.$col-default;

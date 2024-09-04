@@ -1,18 +1,21 @@
 import React, { FC } from 'react';
 
-import s from './App.module.scss';
+import { Page } from '#/types';
 
-import { SettingsProvider } from '#/providers';
-import { MainScreen } from '#/components/pages';
+import { SettingsProvider, RouterProvider } from '#/providers';
+
+import { MainScreen, Privacy, Terms } from '#/components/pages';
+
+const PAGES: Page[] = [
+    { path: '/', element: <MainScreen /> },
+    { path: '/privacy', element: <Privacy /> },
+    { path: '/terms', element: <Terms /> }
+];
 
 const App: FC = () => {
     return (
         <SettingsProvider>
-            <div className={s.wrapper}>
-                <div className={s.content}>
-                    <MainScreen />
-                </div>
-            </div>
+            <RouterProvider pages={PAGES} />
         </SettingsProvider>
     );
 };

@@ -1,0 +1,100 @@
+@use "#/styles" as s;
+
+$btn-back-p: 20px;
+$btn-back-fz: 1.4em;
+$btn-back-icon-fz: 0.8em;
+$btn-back-icon-col: s.$netcolor2;
+$content-p: 20px 0;
+$content-max-w: 600px;
+$content-backdrop-brightness: 70%;
+$content-text-fz: 0.7em;
+$content-text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 0 1px 0 #000, 0 -1px 0 #000, -1px 0 0 #000, 1px 0 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000, 0 2px 0 #000, 0 -2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000;
+$content-h-m-block: 1.33em;
+$content-h5-m-block: 1.67em;
+$content-h1-fz: 2em;
+$content-h2-m-t: 40px;
+$content-h2-fz: 1.2em;
+$content-p-fz: 1em;
+$content-p-inline-start: 10px;
+
+
+.wrapper {
+  overflow-x: hidden;
+  background-image: url('../../../assets/images/menu-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.btnBack {
+  padding: $btn-back-p;
+  color: $btn-back-icon-col;
+  font-size: $btn-back-fz;
+  text-decoration: underline;
+  background-color: transparent;
+
+  &_icon {
+    height: $btn-back-icon-fz;
+
+    path {
+      color: $btn-back-icon-col;
+    }
+  }
+}
+
+.content {
+  backdrop-filter: brightness($content-backdrop-brightness);
+}
+
+.text {
+  max-width: $content-max-w;
+  margin: 0 auto;
+  padding: $content-p;
+  font-size: $content-text-fz;
+  text-align: left;
+
+
+  & > *, li {
+    white-space: pre-wrap;
+    text-shadow: $content-text-shadow;
+    word-break: break-word;
+  }
+
+  h1, h2, h3, h4, h5 {
+    line-height: inherit;
+    text-align: left;
+    margin-block: $content-h-m-block;
+  }
+
+  h1 {
+    font-size: $content-h1-fz;
+  }
+
+  h2 {
+    margin-top: $content-h2-m-t;
+    font-size: $content-h2-fz;
+  }
+
+  h5 {
+    margin-block: $content-h5-m-block;
+  }
+
+  p {
+    margin-block: $content-p-fz;
+  }
+
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style-type: unset;
+    padding-inline-start: $content-p-inline-start
+  }
+
+  li {
+    list-style-type: unset;
+  }
+}

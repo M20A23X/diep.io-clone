@@ -9,6 +9,7 @@ pre {
 ul,
 ol,
 li {
+  font-size: inherit;
   list-style-position: inside;
   list-style-type: none;
 }
@@ -48,6 +49,10 @@ svg {
   stroke: inherit;
 }
 
+span {
+  color: inherit;
+}
+
 ul,
 ol,
 figure,
@@ -55,6 +60,7 @@ input,
 p {
   margin: 0;
   padding: 0;
+  font-size: inherit;
 }
 
 iframe {
@@ -95,6 +101,7 @@ textarea {
 
 a {
   color: inherit;
+  font-size: inherit;
   text-decoration: none;
   cursor: pointer;
 }
