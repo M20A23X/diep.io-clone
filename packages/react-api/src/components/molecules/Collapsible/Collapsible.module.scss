@@ -1,0 +1,19 @@
+$head-m-r: 16px;
+$list-p-l: 50px;
+
+.clickable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_head {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    margin-right: $head-m-r;
+  }
+}
+
+.list {
+  padding-left: $list-p-l;
+}
