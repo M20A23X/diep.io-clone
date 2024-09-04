@@ -4,7 +4,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
 
 import { Menu } from './Menu';
-import s from './Menu.module.scss';
+import s from './Main.module.scss';
 
 import { Select } from '#/components/molecules';
 
@@ -13,6 +13,7 @@ import variables from '#/styles/export.module.scss';
 import Logo from '#/assets/images/logo.png';
 import USA from '#/assets/images/flag-usa.svg';
 import GE from '#/assets/images/flag-ge.svg';
+import { Button, Input } from '#/components/atoms';
 
 type Region = { flag: string; name: string; players: number };
 type GameMode = 'Maze' | '4 Teams';
@@ -80,40 +81,43 @@ const MainScreen: FC = () => {
                         <span className={s.inputGroup_loader}>Connecting...</span>
                     ) : (
                         <>
-                            <input
+                            <Input
                                 type='text'
                                 className={s.inputGroup_username}
+                                handleValue={(value) => {
+                                    console.log(value);
+                                }}
                             />
-                            <button
+                            <Button
                                 type={'submit'}
                                 className={s.inputGroup_button}
                             >
                                 Play!
-                            </button>
+                            </Button>
                         </>
                     )}
                 </div>
-                <button
+                <Button
                     className={s.copyLink}
                     style={{ backgroundColor: TeamColorDict[TEAM] }}
                 >
                     <FontAwesomeIcon icon={faLink} />
                     <span>Copy Party Link</span>
-                </button>
+                </Button>
                 <div className={s.sessionBtns}>
-                    <button
+                    <Button
                         className={s.sessionBtns_button}
                         disabled
                     >
                         Login
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         className={s.sessionBtns_button}
                         disabled
                     >
                         Friends
-                    </button>
-                    <button className={s.sessionBtns_button}>Achievements</button>
+                    </Button>
+                    <Button className={s.sessionBtns_button}>Achievements</Button>
                 </div>
             </div>
         </>

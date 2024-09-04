@@ -1,21 +1,27 @@
-import React, { FC, useState } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faChessBoard,
     faChevronLeft,
     faClose,
+    faExternalLink,
     faGear,
+    faListSquares,
     faQuestionCircle,
     faUsers,
-    faListSquares,
-    faChessBoard,
-    faExternalLink,
     IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
 
+import { Settings } from './Settings';
+
 import s from './Menu.module.scss';
 
-const MenuEntries: { icon: IconDefinition; text: string }[] = [
+import { Button } from '#/components/atoms';
+
+type MenuTab = 'Settings' | 'Support' | 'Socials' | 'Changelog';
+
+const MenuTabs: { icon: IconDefinition; text: MenuTab }[] = [
     { icon: faGear, text: 'Settings' },
     { icon: faQuestionCircle, text: 'Support' },
     { icon: faUsers, text: 'Socials' },
@@ -23,50 +29,68 @@ const MenuEntries: { icon: IconDefinition; text: string }[] = [
 ];
 
 const Menu: FC = () => {
-    const [isMenuOpened, setMenuOpened] = useState<boolean>(false);
+    const [isMenuOpened, setMenuOpenState] = useState<boolean>(false);
+    const [openedTab, setOpenedTab] = useState<MenuTab | null>(null);
 
-    const EntriesJSX = MenuEntries.map((entry) => (
+    const MenuTabsJSX: ReactElement[] = MenuTabs.map((tab) => (
         <>
-            <hr />
+            <hr className={'tab_divider'} />
             <h2
-                key={entry.text}
-                className={s.sidebar_entry}
+                key={tab.text}
+                className={'tab'}
+                onClick={() => {
+                    setOpenedTab(tab.text);
+                    setMenuOpenState(false);
+                }}
             >
                 <FontAwesomeIcon
-                    icon={entry.icon}
-                    className={s.sidebar_entry_icon}
+                    icon={tab.icon}
+                    className={'tab_icon'}
                 />
-                <span>{entry.text}</span>
+                <span>{tab.text}</span>
             </h2>
         </>
     ));
 
+    let OpenedTab: ReactElement | null;
+    switch (openedTab) {
+        case 'Settings':
+            OpenedTab = <Settings setOpenedTab={setOpenedTab} />;
+            break;
+        case 'Socials':
+            OpenedTab = <Settings setOpenedTab={setOpenedTab} />;
+            break;
+        default:
+            OpenedTab = null;
+            break;
+    }
+
     return (
         <>
-            <button
+            <Button
                 className={cn(s.menu_btn, { [s.menu_btn__pressed]: isMenuOpened })}
-                onClick={() => setMenuOpened(true)}
+                onClick={() => setMenuOpenState(true)}
             >
                 <FontAwesomeIcon icon={faChevronLeft} />
                 <span>&nbsp;Menu</span>
-            </button>
-            <div className={s.sidebar_wrapper}>
+            </Button>
+            <div className={s.menu_wrapper}>
                 <div className={isMenuOpened ? s.sidebar_animator__opened : s.sidebar_animator__closed}>
                     <div className={s.sidebar}>
                         <h1
-                            className={cn(s.sidebar_entry, s.sidebar_entry_special)}
-                            onClick={() => setMenuOpened(false)}
+                            className={cn('tab', 'tab_special')}
+                            onClick={() => setMenuOpenState(false)}
                         >
                             <span>MENU</span>
                             <FontAwesomeIcon
                                 icon={faClose}
-                                className={s.sidebar_entry_special_icon}
+                                className={'tab_special_icon'}
                             />
                         </h1>
-                        {EntriesJSX}
-                        <hr />
+                        {MenuTabsJSX}
+                        <hr className={'tab_divider'} />
                         <h2
-                            className={cn(s.sidebar_entry, s.sidebar_entry_special)}
+                            className={cn('tab', 'tab_special')}
                             onClick={() => {
                                 window.open('https://iogames.space/', '_blank', 'noopener noreferrer');
                             }}
@@ -74,20 +98,22 @@ const Menu: FC = () => {
                             <span>
                                 <FontAwesomeIcon
                                     icon={faChessBoard}
-                                    className={s.sidebar_entry_icon}
+                                    className={'tab_icon'}
                                 />
                                 <span>io Games</span>
                             </span>
                             <FontAwesomeIcon
                                 icon={faExternalLink}
-                                className={s.sidebar_entry_special_icon__blue}
+                                className={'sidebar_tab_special_icon__blue'}
                             />
                         </h2>
                     </div>
                 </div>
             </div>
+            {OpenedTab}
         </>
     );
 };
 
+export type { MenuTab };
 export { Menu };

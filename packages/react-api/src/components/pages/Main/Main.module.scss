@@ -89,8 +89,8 @@ $copylink-fz: 0.8em;
     padding: $input-username-p;
     font-size: $input-username-fz;
     border-right: none;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 
   &_button {
@@ -99,8 +99,8 @@ $copylink-fz: 0.8em;
     font-size: $input-button-fz;
     text-shadow: s.$text-shadow-thick;
     background-color: s.$netcolor2;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 
   &_loader {
