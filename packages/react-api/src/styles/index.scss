@@ -4,6 +4,7 @@
 @forward "./global";
 @forward "./placeholders";
 @use "./constants" as c;
+@use "./colors" as cl;
 
 body {
   background-color: #000;
@@ -19,3 +20,25 @@ body {
   user-select: none;
 }
 
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+
+  &, path {
+    color: cl.$netcolor2;
+    font-size: inherit;
+    text-shadow: none;
+  }
+
+  &:active {
+    color: red;
+  }
+}
+
+
+h1, h2, h3, h4, h5 {
+  line-height: inherit;
+  text-align: left;
+  margin-block: c.$h-m-block;
+}

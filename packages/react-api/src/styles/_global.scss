@@ -1,9 +1,8 @@
 @use "./colors" as cl;
 @use "./constants" as c;
-@use "./placeholders" ;
+@use "./placeholders";
 
 $btn-cross-shadow-blur: 1px;
-$btn-cross-shadow: drop-shadow(0 0 $btn-cross-shadow-blur #fff) drop-shadow(0 0 $btn-cross-shadow-blur #fff);
 $sidebar-entry-mt: 0.83em;
 $sidebar-entry-fz: min(3vh, 1em);
 $sidebar-entry-fw: 700;
@@ -31,25 +30,22 @@ $sidebar-hr-br: 1px;
     }
 
     &_special {
+      align-items: center;
       justify-content: space-between;
       font-size: $sidebar-entry-special-fz;
 
       &_icon {
         font-size: $sidebar-entry-special-icon-fz;
-        filter: $btn-cross-shadow;
-
-        &__blue path {
-          color: cl.$netcolor2;
-        }
       }
+
+    }
+
+    &_divider {
+      width: 100%;
+      margin: 1em 0;
+      background-color: cl.$netcolor0;
+      border: $sidebar-hr-b;
+      border-radius: $sidebar-hr-br;
     }
   }
-}
-
-
-:global(.tab_divider) {
-  width: 100%;
-  background-color: cl.$netcolor0;
-  border: $sidebar-hr-b;
-  border-radius: $sidebar-hr-br;
 }
