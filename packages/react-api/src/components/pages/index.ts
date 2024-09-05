@@ -1,3 +1,3 @@
 export * from './Main';
-export * from './User/Privacy';
-export * from './User/Terms';
+export * from './Support/Privacy';
+export * from './Support/Terms';

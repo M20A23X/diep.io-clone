@@ -49,10 +49,11 @@ const Input: FC<IInputProps> = (props: IInputProps) => {
     } = props;
 
     const settingsContext: ISettingsContext | null = useContext(SettingsContext);
-
     const inputRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
-    const [value, setValue] = useState<number | string | undefined>(checked ? checked.toString() : initialValue);
+    const [value, setValue] = useState<number | string | undefined>(
+        checked !== undefined ? checked.toString() : initialValue
+    );
     const [clientWidth, setClientWidth] = useState<number>(0);
 
     useEffect(() => {
@@ -66,9 +67,10 @@ const Input: FC<IInputProps> = (props: IInputProps) => {
     switch (attrs.type) {
         case 'checkbox':
             const handleCheckBoxValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-                setValue(event.target.checked.toString());
+                const newValue: string = event.target.checked.toString();
+                setValue(newValue);
                 onChange?.(event);
-                if (value) handleValue(value);
+                if (newValue !== undefined) handleValue(newValue);
             };
 
             const checkboxId: string = attrs.id ?? v4();
@@ -84,7 +86,6 @@ const Input: FC<IInputProps> = (props: IInputProps) => {
                         <FontAwesomeIcon
                             icon={boolValue ? faToggleOn : faToggleOff}
                             className={cn(s.inputCheckBox, { [s.checked]: boolValue })}
-                            style={inputStyle}
                         />
                     </label>
                     <input
@@ -104,7 +105,7 @@ const Input: FC<IInputProps> = (props: IInputProps) => {
             };
             const handleRangeValueChange = (event: MouseEvent<HTMLInputElement>) => {
                 onClick?.(event);
-                if (value) handleValue(value);
+                if (value !== undefined) handleValue(value);
             };
             const min: number = parseNumberValue(attrs.min ?? '0');
             const max: number = parseNumberValue(attrs.max ?? '100');
@@ -136,7 +137,7 @@ const Input: FC<IInputProps> = (props: IInputProps) => {
             const handleTextValueChange = (event: ChangeEvent<HTMLInputElement>) => {
                 setValue(event.target.value);
                 onChange?.(event);
-                if (value) handleValue(value);
+                if (value !== undefined) handleValue(value);
             };
 
             InputJSX = (
