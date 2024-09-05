@@ -13,33 +13,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
 
-import { Settings } from './Settings';
+import { Changelog, Settings, Socials, Support } from './Tabs';
 
 import s from './Menu.module.scss';
 
 import { Button } from '#/components/atoms';
 
 type MenuTab = 'Settings' | 'Support' | 'Socials' | 'Changelog';
+type Tab = { icon: IconDefinition; name: MenuTab; element: ReactElement };
 
-const MenuTabs: { icon: IconDefinition; text: MenuTab }[] = [
-    { icon: faGear, text: 'Settings' },
-    { icon: faQuestionCircle, text: 'Support' },
-    { icon: faUsers, text: 'Socials' },
-    { icon: faListSquares, text: 'Changelog' }
+const MENU_TABS: Tab[] = [
+    { icon: faGear, name: 'Settings', element: <Settings /> },
+    { icon: faQuestionCircle, name: 'Support', element: <Support /> },
+    { icon: faUsers, name: 'Socials', element: <Socials /> },
+    { icon: faListSquares, name: 'Changelog', element: <Changelog /> }
 ];
 
 const Menu: FC = () => {
     const [isMenuOpened, setMenuOpenState] = useState<boolean>(false);
-    const [openedTab, setOpenedTab] = useState<MenuTab | null>(null);
+    const [openedTabIdx, setOpenedTabIdx] = useState<number | null>(null);
 
-    const MenuTabsJSX: ReactElement[] = MenuTabs.map((tab) => (
+    const MenuTabsJSX: ReactElement[] = MENU_TABS.map((tab: Tab, index) => (
         <>
             <hr className={'tab_divider'} />
             <h2
-                key={tab.text}
+                key={tab.name}
                 className={'tab'}
                 onClick={() => {
-                    setOpenedTab(tab.text);
+                    setOpenedTabIdx(index);
                     setMenuOpenState(false);
                 }}
             >
@@ -47,22 +48,33 @@ const Menu: FC = () => {
                     icon={tab.icon}
                     className={'tab_icon'}
                 />
-                <span>{tab.text}</span>
+                <span>{tab.name}</span>
             </h2>
         </>
     ));
 
-    let OpenedTab: ReactElement | null;
-    switch (openedTab) {
-        case 'Settings':
-            OpenedTab = <Settings setOpenedTab={setOpenedTab} />;
-            break;
-        case 'Socials':
-            OpenedTab = <Settings setOpenedTab={setOpenedTab} />;
-            break;
-        default:
-            OpenedTab = null;
-            break;
+    let OpenedTabJSX: ReactElement | null = null;
+    if (openedTabIdx !== null) {
+        const { name, icon, element }: Tab = MENU_TABS[openedTabIdx];
+        OpenedTabJSX = (
+            <div className={s.tab_wrapper}>
+                <h1 className={'tab tab_special'}>
+                    <span>
+                        <FontAwesomeIcon
+                            icon={icon}
+                            className={s.tab_icon}
+                        />
+                        <span className={s.tab_name}>{name}</span>
+                    </span>
+                    <FontAwesomeIcon
+                        icon={faClose}
+                        className={'tab_special_icon'}
+                        onClick={() => setOpenedTabIdx(null)}
+                    />
+                </h1>
+                {element}
+            </div>
+        );
     }
 
     return (
@@ -102,18 +114,16 @@ const Menu: FC = () => {
                                 />
                                 <span>io Games</span>
                             </span>
-                            <FontAwesomeIcon
-                                icon={faExternalLink}
-                                className={'sidebar_tab_special_icon__blue'}
-                            />
+                            <a href={'https://iogames.space/'}>
+                                <FontAwesomeIcon icon={faExternalLink} />
+                            </a>
                         </h2>
                     </div>
                 </div>
             </div>
-            {OpenedTab}
+            {OpenedTabJSX}
         </>
     );
 };
 
-export type { MenuTab };
 export { Menu };

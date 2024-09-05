@@ -1,0 +1,23 @@
+@use "#/styles" as s;
+
+$support-fz: 1.3em;
+$support-text-fz: 0.9em;
+$support-text-m-r: 10px;
+$support-text-col: s.$netcolor2;
+$support-icon-fz: 1em;
+
+.support {
+  font-size: $support-fz;
+}
+
+.link {
+  &_text {
+    margin-right: $support-text-m-r;
+    color: $support-text-col;
+    font-size: $support-text-fz;
+  }
+
+  &_icon {
+    font-size: $support-icon-fz;
+  }
+}

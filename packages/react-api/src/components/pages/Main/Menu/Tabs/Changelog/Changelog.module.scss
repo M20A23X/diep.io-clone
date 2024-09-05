@@ -1,0 +1,36 @@
+@use "#/styles" as s;
+
+$reset-btn-br: 100px !important;
+$reset-btn-b: 1px solid s.$netcolor2;
+$reset-btn-col: s.$netcolor2;
+$reset-btn-p: 0.3125rem 0.625rem;
+
+.header {
+  width: 9em;
+  padding-top: 0.75rem;
+  padding-right: 1rem;
+  font-size: 0.8em;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.html {
+  display: flex;
+  flex-grow: 1;
+  font-size: 0.6em;
+
+
+  li {
+    list-style-position: outside;
+    list-style-type: disc;
+
+    & > ul {
+      padding-left: 20px;
+
+      li {
+        font-size: 0.6rem;
+        list-style-type: circle;
+      }
+    }
+  }
+}

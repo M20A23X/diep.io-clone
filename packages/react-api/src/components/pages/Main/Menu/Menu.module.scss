@@ -10,6 +10,11 @@ $sidebar-bg-c: rgb(0 0 0 / 75%);
 $sidebar-h: 100vh;
 $sidebar-p: 17px 55px 90px;
 $sidebar-w: 350px;
+$wrapper-bg-col: rgb(0 0 0 / 85%);
+$wrapper-backdrop-filter: blur(2px);
+$wrapper-text-underline-offset: 4px;
+$wrapper-p: 2.5rem 3.75rem;
+$tab-icon-m-r: 1.2rem;
 
 @keyframes fade-in {
   0% {
@@ -101,5 +106,36 @@ $sidebar-close-animation: slide-out 0.1s ease-in-out;
       display: none;
       animation: $sidebar-close-animation;
     }
+  }
+}
+
+
+.tab {
+  &_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: block;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: $wrapper-p;
+    overflow: hidden;
+    background-color: $wrapper-bg-col;
+    backdrop-filter: $wrapper-backdrop-filter;
+    user-select: auto;
+    text-underline-offset: $wrapper-text-underline-offset;
+    overscroll-behavior: initial;
+  }
+
+  &_name {
+    text-transform: uppercase;
+  }
+
+  &_icon {
+    margin-right: $tab-icon-m-r;
   }
 }

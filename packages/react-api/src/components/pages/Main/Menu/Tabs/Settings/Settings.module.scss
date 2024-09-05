@@ -1,0 +1,20 @@
+@use "#/styles" as s;
+
+$reset-btn-br: 100px !important;
+$reset-btn-b: 1px solid s.$netcolor2;
+$reset-btn-col: s.$netcolor2;
+$reset-btn-p: 0.3125rem 0.625rem;
+
+.settings {
+  &_resetBtn {
+    @extend %clickable;
+
+    margin-left: auto;
+    padding: $reset-btn-p;
+    color: $reset-btn-col;
+    background-color: inherit;
+    border: $reset-btn-b !important;
+    border-radius: $reset-btn-br;
+    cursor: pointer;
+  }
+}

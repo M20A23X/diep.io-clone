@@ -1,10 +1,13 @@
 @use "#/styles" as s;
 
+
+$wrapper-animation-duration: 0.25s;
+$content-backdrop-brightness: 70%;
+$margin-b: 16px;
+$menu-loading-opacity: 50%;
 $logo-w: 20rem;
 $logo-p-b: 40px;
 $logo-m-b: 16px;
-$margin-b: 16px;
-$menu-loading-opacity: 50%;
 $selector-gap: 0.75rem;
 $selector-w: 28rem;
 $selector-region-w: 260px;
@@ -19,6 +22,15 @@ $input-button-fz: 1.25em;
 $session-gap: 0 16px;
 $copylink-fz: 0.8em;
 
+@keyframes screen-animator {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes pulser {
   0% {
@@ -37,6 +49,31 @@ $copylink-fz: 0.8em;
     transform: scale(1.04);
   }
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../../assets/images/menu-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  animation-name: screen-animator;
+  animation-duration: $wrapper-animation-duration;
+  pointer-events: all;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  backdrop-filter: brightness($content-backdrop-brightness);
+}
+
 
 .logo {
   align-self: center;
