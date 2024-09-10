@@ -6,30 +6,19 @@ import cn from 'classnames';
 import { Menu } from './Menu';
 import s from './Main.module.scss';
 
+import { Button, Input } from '#/components/atoms';
 import { Select } from '#/components/molecules';
-
-import variables from '#/styles/export.module.scss';
 
 import Logo from '#/assets/images/logo.png';
 import USA from '#/assets/images/flag-usa.svg';
 import GE from '#/assets/images/flag-ge.svg';
-import { Button, Input } from '#/components/atoms';
 
 type Region = { flag: string; name: string; players: number };
-type GameMode = 'Maze' | '4 Teams';
-type Team = 'Blue' | 'Red';
+type GameMode = 'Maze' | '4 Teams' | 'FFA' | 'Domination' | '2 Teams' | 'Sandbox';
+type Team = 'team-blue' | 'team-red' | 'team-purple' | 'team-green';
 
-const GameModeColorDict: Record<GameMode, string> = {
-    Maze: variables.mazeBgCol,
-    '4 Teams': variables.teams4BgCol
-};
-const TeamColorDict: Record<Team, string> = {
-    Red: variables.teamRedBgCol,
-    Blue: variables.teamBlueBgCol
-};
-
-const TEAM: Team = 'Blue';
-const GAME_MODES: GameMode[] = ['Maze', '4 Teams'];
+const TEAM: Team = 'team-blue';
+const GAME_MODES: GameMode[] = ['Maze', '4 Teams', 'FFA', 'Domination', '2 Teams', 'Sandbox'];
 const REGIONS: Region[] = [
     { flag: USA, name: 'Los Angeles', players: 236 },
     { flag: GE, name: 'Frankfurt', players: 23 }
@@ -52,18 +41,13 @@ const MainScreen: FC = () => {
                             tabIndex={0}
                             name={'Game Mode'}
                             options={GAME_MODES}
-                            className={s.serverSelector_gameMode}
-                            getOptionHtml={(entry: GameMode) => <>{entry}</>}
-                            getOptionStyle={(entry: GameMode) => ({
-                                backgroundColor: GameModeColorDict[entry]
-                            })}
                         />
                         <Select
                             tabIndex={1}
                             name={'Region'}
                             options={REGIONS}
                             className={s.serverSelector_region}
-                            getOptionHtml={(entry: Region) => (
+                            renderOption={(entry: Region) => (
                                 <>
                                     <img
                                         src={entry.flag}
@@ -100,7 +84,7 @@ const MainScreen: FC = () => {
                     </div>
                     <Button
                         className={s.copyLink}
-                        style={{ backgroundColor: TeamColorDict[TEAM] }}
+                        id={TEAM.toLowerCase()}
                     >
                         <FontAwesomeIcon icon={faLink} />
                         <span>Copy Party Link</span>

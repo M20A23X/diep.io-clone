@@ -22,6 +22,47 @@ $input-button-fz: 1.25em;
 $session-gap: 0 16px;
 $copylink-fz: 0.8em;
 
+
+[id^='4 teams'] {
+  background-color: s.$uicolor2;
+}
+
+[id^='maze'] {
+  background-color: s.$uicolor3;
+}
+
+[id^='ffa'] {
+  background-color: s.$uicolor0;
+}
+
+[id^='2 teams'] {
+  background-color: s.$uicolor1;
+}
+
+[id^='domination'] {
+  background-color: s.$uicolor4;
+}
+
+[id^='sandbox'] {
+  background-color: s.$uicolor5;
+}
+
+[id^='team-blue'] {
+  background-color: s.$net-team-blue;
+}
+
+[id^='team-red'] {
+  background-color: s.$net-team-red;
+}
+
+[id^='team-purple'] {
+  background-color: s.$net-team-purple;
+}
+
+[id^='team-green'] {
+  background-color: s.$net-team-green;
+}
+
 @keyframes screen-animator {
   0% {
     opacity: 0;
@@ -112,6 +153,7 @@ $copylink-fz: 0.8em;
       font-size: $selector-region-players-fz;
     }
   }
+
 }
 
 .inputGroup {
