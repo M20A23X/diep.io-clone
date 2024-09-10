@@ -2,7 +2,6 @@
 
 $select-gap: 5px;
 $select-fz: 0.8rem;
-$select-p: 0.625em;
 $chevron-r: 16px;
 $chevron-fz: 0.8rem;
 $chevron-shadow-s: 1px;
@@ -23,6 +22,16 @@ $chevron-shadow: drop-shadow(0 -1 * $chevron-shadow-s $chevron-shadow-blur #000)
   &Control {
     display: flex;
     flex-grow: 1;
+    border-radius: inherit;
+
+    li {
+      border-radius: inherit;
+    }
+
+    &_active {
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
 
     &Wrapper {
       display: flex;
@@ -44,4 +53,11 @@ $chevron-shadow: drop-shadow(0 -1 * $chevron-shadow-s $chevron-shadow-blur #000)
   position: absolute;
   top: 100%;
   width: 100%;
+
+  &_active {
+    li:last-of-type {
+      border-bottom-right-radius: inherit;
+      border-bottom-left-radius: inherit;
+    }
+  }
 }

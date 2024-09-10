@@ -15,6 +15,7 @@ $option-hover-transition: filter 0.2s ease-in-out;
   background-color: $option-bg-col;
   filter: $option-filter;
 
+
   &:hover {
     transition: $option-hover-transition;
   }

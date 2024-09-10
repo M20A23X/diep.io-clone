@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useState } from 'react';
+import React, { CSSProperties, HTMLAttributes, LiHTMLAttributes, ReactElement, useContext, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -6,20 +6,21 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
 import s from './Select.module.scss';
 import { Option } from '#/components/atoms';
+import { ISettingsContext, SettingsContext } from '#/contexts';
 
-interface ISelectProps<T extends object | string> {
+interface ISelectProps<T extends object | string> extends HTMLAttributes<HTMLDivElement> {
     name: string;
     options: T[];
-    getOptionHtml: (entry: T) => ReactElement;
-    getOptionStyle?: (entry: T) => CSSProperties;
-    tabIndex: number;
-    className: string;
+    optionAttrs?: LiHTMLAttributes<HTMLLIElement>;
+    renderOption?: (option: T) => ReactElement;
 }
 
 function Select<T extends object | string>(props: ISelectProps<T>) {
-    const { name, options, getOptionStyle, getOptionHtml, className, tabIndex } = props;
+    const { name, options, optionAttrs, renderOption, className, tabIndex, ...attrs } = props;
     const [isActive, setActive] = useState(false);
     const [selectedOptionIdx, setSelectedOptionIdx] = useState(0);
+
+    const settingsContext: ISettingsContext | null = useContext(SettingsContext);
 
     const toggleActive = () => setActive((prevState) => !prevState);
     const handleOptionClick = (index: number) => {
@@ -28,20 +29,23 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
 
     const OptionsAllJSX: ReactElement[] = options.map((entry: T, index) => (
         <Option
+            {...optionAttrs}
             key={entry.toString() + index}
+            id={entry.toString().toLowerCase() + index}
             itemId={index}
             handleClick={() => {
                 if (index !== selectedOptionIdx) handleOptionClick(index);
             }}
-            style={getOptionStyle?.(entry) ?? {}}
+            style={optionAttrs?.style}
         >
-            {getOptionHtml(entry)}
+            {typeof entry === 'string' ? entry : renderOption?.(entry)}
         </Option>
     ));
 
-    const OptionsJSX = isActive
-        ? [...OptionsAllJSX.slice(0, selectedOptionIdx), ...OptionsAllJSX.slice(selectedOptionIdx + 1)]
-        : OptionsAllJSX[selectedOptionIdx];
+    const OptionsJSX: ReactElement[] = [
+        ...OptionsAllJSX.slice(0, selectedOptionIdx),
+        ...OptionsAllJSX.slice(selectedOptionIdx + 1)
+    ];
 
     return (
         <div
@@ -51,10 +55,13 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
             onBlur={() => setActive(false)}
         >
             <label htmlFor={name}>{name}</label>
-            <div className={s.selectControlWrapper}>
+            <div
+                className={s.selectControlWrapper}
+                style={settingsContext?.getUIStyle(attrs?.style)}
+            >
                 <div
                     id={name}
-                    className={s.selectControl}
+                    className={cn(s.selectControl, { [s.selectControl_active]: isActive })}
                 >
                     {OptionsAllJSX[selectedOptionIdx]}
                 </div>
@@ -63,7 +70,14 @@ function Select<T extends object | string>(props: ISelectProps<T>) {
                     className={s.chevron}
                 />
             </div>
-            {isActive ? <ul className={s.optionsList}>{OptionsJSX}</ul> : null}
+            {isActive ? (
+                <ul
+                    className={cn(s.optionsList, { [s.optionsList_active]: isActive })}
+                    style={settingsContext?.getUIStyle(attrs?.style)}
+                >
+                    {OptionsJSX}
+                </ul>
+            ) : null}
         </div>
     );
 }
